@@ -1,4 +1,3 @@
-
 <title>ArmanQureshi Market Cards</title>
 
 <style>
