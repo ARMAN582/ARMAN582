@@ -17,7 +17,7 @@ font-family:Arial;
 overflow-x:hidden;
 }
 
-/* background */
+/* particle background */
 
 canvas{
 position:fixed;
@@ -86,7 +86,7 @@ text-align:center;
 padding:30px;
 }
 
-/* GRID FIX (important) */
+/* GRID layout */
 
 .cards{
 display:grid;
@@ -146,7 +146,7 @@ background-position:center;
 position:relative;
 }
 
-/* icon */
+/* asset icon */
 
 .assetIcon{
 position:absolute;
@@ -246,8 +246,6 @@ const assets=[
 "Gasoline","Petrol","Diesel","Adani Gas",
 "Tata Motors","Jio","Crypto Index","Silver Future","Gold Future"
 ]
-
-/* icons */
 
 const icons=[
 "🥇","🥈","₿","Ξ","⚡",
@@ -358,7 +356,7 @@ document.getElementById("totalLoss").innerText=totalLoss.toFixed(2)
 
 setInterval(updateMarket,2000)
 
-/* particles */
+/* particle background */
 
 const canvas=document.getElementById("bg")
 const ctx=canvas.getContext("2d")
