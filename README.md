@@ -1,56 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ArmanQureshi Market Cards</title>
 
 <style>
 
 body{
 margin:0;
+font-family:Arial;
 background:#000;
 color:white;
-font-family:Arial;
 overflow-x:hidden;
-}
-
-/* background particles */
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
 }
 
 /* header */
 
 header{
 text-align:center;
-padding:30px;
+padding:25px;
 }
 
 .mainTitle{
-font-size:52px;
+font-size:48px;
 letter-spacing:6px;
-color:#00ffcc;
-text-shadow:0 0 20px #00ffcc;
+color:#00ffc8;
+text-shadow:0 0 20px #00ffc8;
 }
-
-/* profit loss */
 
 .marketSummary{
 display:flex;
 justify-content:center;
 gap:20px;
-margin-top:15px;
+margin-top:10px;
 flex-wrap:wrap;
 }
 
 .box{
 background:#111;
-padding:12px 20px;
+padding:10px 20px;
 border-radius:10px;
 font-size:18px;
-box-shadow:0 0 10px #00ffcc40;
 }
 
 #totalProfit{color:lime;}
@@ -58,10 +50,14 @@ box-shadow:0 0 10px #00ffcc40;
 
 /* buttons */
 
+.social{
+margin-top:15px;
+}
+
 .btn{
-padding:10px 18px;
+padding:8px 16px;
 margin:5px;
-border-radius:25px;
+border-radius:20px;
 text-decoration:none;
 font-weight:bold;
 display:inline-block;
@@ -72,63 +68,47 @@ display:inline-block;
 .facebook{background:#1877F2;color:white;}
 .snapchat{background:#FFFC00;color:black;}
 
-/* section */
-
-.section{
-text-align:center;
-padding:30px;
-}
-
-/* grid layout */
+/* cards grid */
 
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,220px);
 gap:25px;
 justify-content:center;
+padding:30px;
 }
 
-/* card container */
+/* card */
 
 .card-container{
 width:220px;
 height:300px;
 perspective:1000px;
-position:relative;
 }
-
-.card-container.active{
-z-index:100;
-}
-
-/* card */
 
 .card{
 width:100%;
 height:100%;
 position:relative;
 transform-style:preserve-3d;
-transition:transform 0.7s;
+transition:transform .6s;
 cursor:pointer;
 }
 
-.card-container.active .card{
+.card.flip{
 transform:rotateY(180deg);
 }
 
 /* faces */
 
-.card-front,
-.card-back{
+.card-face{
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
 border-radius:15px;
 backface-visibility:hidden;
 overflow:hidden;
-box-shadow:0 0 20px rgba(0,255,0,0.4);
+box-shadow:0 0 20px rgba(0,255,200,.3);
 }
 
 /* front */
@@ -136,31 +116,21 @@ box-shadow:0 0 20px rgba(0,255,0,0.4);
 .card-front{
 background-size:cover;
 background-position:center;
-position:relative;
-}
-
-.assetIcon{
-position:absolute;
-top:10px;
-left:10px;
-font-size:28px;
 }
 
 .overlay{
 position:absolute;
 bottom:0;
 width:100%;
-background:linear-gradient(transparent,rgba(0,0,0,0.9));
+background:linear-gradient(transparent,rgba(0,0,0,.9));
 text-align:center;
-padding:12px;
+padding:10px;
 }
 
 .overlay span{
-font-size:20px;
 letter-spacing:3px;
-color:#00ffcc;
-text-shadow:0 0 10px #00ffcc;
 font-weight:bold;
+color:#00ffc8;
 }
 
 /* back */
@@ -189,8 +159,6 @@ margin-top:6px;
 
 <body>
 
-<canvas id="bg"></canvas>
-
 <header>
 
 <h1 class="mainTitle">ARMANQURESHI</h1>
@@ -207,24 +175,20 @@ Total Loss ₹ <span id="totalLoss">0</span>
 
 </div>
 
+<div class="social">
 <a class="btn whatsapp" href="https://wa.me/9026550240">WhatsApp</a>
 <a class="btn instagram" href="https://instagram.com/armanqureshi2800">Instagram</a>
 <a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/">Facebook</a>
 <a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28">Snapchat</a>
+</div>
 
 </header>
 
-<section class="section">
-
-<h2>Live Market Cards</h2>
-
 <div class="cards" id="cards"></div>
-
-</section>
 
 <script>
 
-/* assets */
+/* asset names */
 
 const assets=[
 "Gold","Silver","Bitcoin","Ethereum","Adani Power",
@@ -236,19 +200,11 @@ const assets=[
 "Tata Motors","Jio","Crypto Index","Silver Future","Gold Future"
 ]
 
-const icons=[
-"🥇","🥈","₿","Ξ","⚡",
-"🌱","🚢","📊","🏭",
-"💻","💻","🏦","🏦","⛽",
-"🛢","🔥","⛏","📡",
-"📶","📈","📉","🏦",
-"⛽","⛽","🚛","🔥",
-"🚗","📱","🪙","🥈","🥇"
-]
+const cards=document.getElementById("cards")
 
-const wrapper=document.getElementById("cards")
+/* create cards */
 
-assets.forEach((a,i)=>{
+assets.forEach((asset,i)=>{
 
 let container=document.createElement("div")
 container.className="card-container"
@@ -256,32 +212,25 @@ container.className="card-container"
 let card=document.createElement("div")
 card.className="card"
 
-card.onclick=function(e){
-
-e.stopPropagation()
-container.classList.toggle("active")
-
+card.onclick=()=>{
+card.classList.toggle("flip")
 }
 
 let front=document.createElement("div")
-front.className="card-front"
+front.className="card-face card-front"
 front.style.backgroundImage=`url(photo${i+1}.jpg)`
 
 front.innerHTML=`
-
-<div class="assetIcon">${icons[i]}</div>
-
 <div class="overlay">
 <span>ARMANQURESHI</span>
 </div>
-
 `
 
 let back=document.createElement("div")
-back.className="card-back"
+back.className="card-face card-back"
 
 back.innerHTML=`
-<h3>${a}</h3>
+<h3>${asset}</h3>
 <div class="price" id="price${i}">₹0</div>
 <div class="change" id="change${i}">Loading...</div>
 `
@@ -290,12 +239,13 @@ card.appendChild(front)
 card.appendChild(back)
 
 container.appendChild(card)
-wrapper.appendChild(container)
+cards.appendChild(container)
 
 })
 
-let prices=[]
+/* market simulation */
 
+let prices=[]
 function updateMarket(){
 
 let totalProfit=0
@@ -335,49 +285,6 @@ document.getElementById("totalLoss").innerText=totalLoss.toFixed(2)
 }
 
 setInterval(updateMarket,2000)
-
-/* particles */
-
-const canvas=document.getElementById("bg")
-const ctx=canvas.getContext("2d")
-
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
-
-let particles=[]
-
-for(let i=0;i<120;i++){
-
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*3,
-s:Math.random()*0.5
-})
-
-}
-
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-particles.forEach(p=>{
-
-p.y-=p.s
-if(p.y<0)p.y=canvas.height
-
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
-ctx.fillStyle="rgba(0,255,0,0.7)"
-ctx.fill()
-
-})
-
-requestAnimationFrame(animate)
-
-}
-
-animate()
 
 </script>
 
