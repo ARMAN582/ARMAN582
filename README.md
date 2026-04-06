@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +17,7 @@ font-family:Arial;
 overflow-x:hidden;
 }
 
-/* particle background */
+/* background particles */
 
 canvas{
 position:fixed;
@@ -83,7 +86,7 @@ text-align:center;
 padding:30px;
 }
 
-/* GRID layout */
+/* grid layout */
 
 .cards{
 display:grid;
@@ -143,16 +146,12 @@ background-position:center;
 position:relative;
 }
 
-/* asset icon */
-
 .assetIcon{
 position:absolute;
 top:10px;
 left:10px;
 font-size:28px;
 }
-
-/* name overlay */
 
 .overlay{
 position:absolute;
@@ -267,12 +266,9 @@ card.className="card"
 card.onclick=function(e){
 
 e.stopPropagation()
-
 container.classList.toggle("active")
 
 }
-
-/* front */
 
 let front=document.createElement("div")
 front.className="card-front"
@@ -287,8 +283,6 @@ front.innerHTML=`
 </div>
 
 `
-
-/* back */
 
 let back=document.createElement("div")
 back.className="card-back"
@@ -306,8 +300,6 @@ container.appendChild(card)
 wrapper.appendChild(container)
 
 })
-
-/* market simulation */
 
 let prices=[]
 
@@ -332,14 +324,12 @@ if(move>0){
 
 change.innerHTML="▲ Profit "+move.toFixed(2)
 change.style.color="lime"
-
 totalProfit+=move
 
 }else{
 
 change.innerHTML="▼ Loss "+move.toFixed(2)
 change.style.color="red"
-
 totalLoss+=Math.abs(move)
 
 }
@@ -353,7 +343,7 @@ document.getElementById("totalLoss").innerText=totalLoss.toFixed(2)
 
 setInterval(updateMarket,2000)
 
-/* particle background */
+/* particles */
 
 const canvas=document.getElementById("bg")
 const ctx=canvas.getContext("2d")
