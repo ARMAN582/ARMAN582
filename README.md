@@ -220,20 +220,32 @@ let front=document.createElement("div")
 front.className="card-face card-front"
 front.style.backgroundImage=`url(photo${i+1}.jpg)`
 
-front.innerHTML=`
-<div class="overlay">
-<span>ARMANQURESHI</span>
-</div>
-`
+let overlay=document.createElement("div")
+overlay.className="overlay"
+let span=document.createElement("span")
+span.textContent="ARMANQURESHI"
+overlay.appendChild(span)
+front.appendChild(overlay)
 
 let back=document.createElement("div")
 back.className="card-face card-back"
 
-back.innerHTML=`
-<h3>${asset}</h3>
-<div class="price" id="price${i}">₹0</div>
-<div class="change" id="change${i}">Loading...</div>
-`
+let h3=document.createElement("h3")
+h3.textContent=asset
+
+let priceDiv=document.createElement("div")
+priceDiv.className="price"
+priceDiv.id=`price${i}`
+priceDiv.textContent="₹0"
+
+let changeDiv=document.createElement("div")
+changeDiv.className="change"
+changeDiv.id=`change${i}`
+changeDiv.textContent="Loading..."
+
+back.appendChild(h3)
+back.appendChild(priceDiv)
+back.appendChild(changeDiv)
 
 card.appendChild(front)
 card.appendChild(back)
@@ -265,13 +277,13 @@ let change=document.getElementById("change"+i)
 
 if(move>0){
 
-change.innerHTML="▲ Profit "+move.toFixed(2)
+change.textContent="▲ Profit "+move.toFixed(2)
 change.style.color="lime"
 totalProfit+=move
 
 }else{
 
-change.innerHTML="▼ Loss "+move.toFixed(2)
+change.textContent="▼ Loss "+move.toFixed(2)
 change.style.color="red"
 totalLoss+=Math.abs(move)
 
