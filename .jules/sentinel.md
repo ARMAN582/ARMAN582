@@ -1,0 +1,4 @@
+## 2025-02-14 - Prevent Reverse Tabnabbing Vulnerability
+**Vulnerability:** External links (`<a>` elements) without `rel="noopener noreferrer"` attributes can expose the application to reverse tabnabbing. When a user clicks such a link, the newly opened tab can access the original page's `window.opener` object and navigate it to a malicious URL (e.g., a phishing site).
+**Learning:** Legacy web pages or single-page apps embedded in markdown/HTML files often lack modern secure defaults, relying entirely on the developer to manually supply security attributes.
+**Prevention:** Ensure all external links target `_blank` with explicit `rel="noopener noreferrer"`. Additionally, introduce a Content Security Policy (CSP) header or meta-tag to restrict execution of untrusted scripts and style sources.
