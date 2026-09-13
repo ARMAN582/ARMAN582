@@ -176,10 +176,11 @@ Total Loss ₹ <span id="totalLoss">0</span>
 </div>
 
 <div class="social">
-<a class="btn whatsapp" href="https://wa.me/9026550240">WhatsApp</a>
-<a class="btn instagram" href="https://instagram.com/armanqureshi2800">Instagram</a>
-<a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/">Facebook</a>
-<a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28">Snapchat</a>
+<!-- rel="noopener noreferrer" added to prevent reverse tabnabbing and window.opener exploitation on external links -->
+<a class="btn whatsapp" href="https://wa.me/9026550240" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+<a class="btn instagram" href="https://instagram.com/armanqureshi2800" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/" target="_blank" rel="noopener noreferrer">Facebook</a>
+<a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28" target="_blank" rel="noopener noreferrer">Snapchat</a>
 </div>
 
 </header>
