@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Content Security Policy to restrict resource loading -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; script-src 'unsafe-inline';">
 
 <title>ArmanQureshi Market Cards</title>
 
@@ -176,10 +178,11 @@ Total Loss ₹ <span id="totalLoss">0</span>
 </div>
 
 <div class="social">
-<a class="btn whatsapp" href="https://wa.me/9026550240">WhatsApp</a>
-<a class="btn instagram" href="https://instagram.com/armanqureshi2800">Instagram</a>
-<a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/">Facebook</a>
-<a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28">Snapchat</a>
+<!-- External links open in new tab with rel="noopener noreferrer" to prevent reverse tabnabbing -->
+<a class="btn whatsapp" href="https://wa.me/9026550240" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+<a class="btn instagram" href="https://instagram.com/armanqureshi2800" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/" target="_blank" rel="noopener noreferrer">Facebook</a>
+<a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28" target="_blank" rel="noopener noreferrer">Snapchat</a>
 </div>
 
 </header>
