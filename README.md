@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: data:;">
 
 <title>ArmanQureshi Market Cards</title>
 
@@ -176,10 +177,10 @@ Total Loss ₹ <span id="totalLoss">0</span>
 </div>
 
 <div class="social">
-<a class="btn whatsapp" href="https://wa.me/9026550240">WhatsApp</a>
-<a class="btn instagram" href="https://instagram.com/armanqureshi2800">Instagram</a>
-<a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/">Facebook</a>
-<a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28">Snapchat</a>
+<a class="btn whatsapp" href="https://wa.me/9026550240" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+<a class="btn instagram" href="https://instagram.com/armanqureshi2800" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/" target="_blank" rel="noopener noreferrer">Facebook</a>
+<a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28" target="_blank" rel="noopener noreferrer">Snapchat</a>
 </div>
 
 </header>
@@ -265,13 +266,13 @@ let change=document.getElementById("change"+i)
 
 if(move>0){
 
-change.innerHTML="▲ Profit "+move.toFixed(2)
+change.textContent="▲ Profit "+move.toFixed(2)
 change.style.color="lime"
 totalProfit+=move
 
 }else{
 
-change.innerHTML="▼ Loss "+move.toFixed(2)
+change.textContent="▼ Loss "+move.toFixed(2)
 change.style.color="red"
 totalLoss+=Math.abs(move)
 
