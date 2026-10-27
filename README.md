@@ -176,10 +176,11 @@ Total Loss ₹ <span id="totalLoss">0</span>
 </div>
 
 <div class="social">
-<a class="btn whatsapp" href="https://wa.me/9026550240">WhatsApp</a>
-<a class="btn instagram" href="https://instagram.com/armanqureshi2800">Instagram</a>
-<a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/">Facebook</a>
-<a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28">Snapchat</a>
+<!-- Secure external social links using rel="noopener noreferrer" to prevent reverse tabnabbing attacks -->
+<a class="btn whatsapp" href="https://wa.me/9026550240" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+<a class="btn instagram" href="https://instagram.com/armanqureshi2800" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a class="btn facebook" href="https://www.facebook.com/share/19pPMX9SMV/" target="_blank" rel="noopener noreferrer">Facebook</a>
+<a class="btn snapchat" href="https://www.snapchat.com/add/armanqureshi_28" target="_blank" rel="noopener noreferrer">Snapchat</a>
 </div>
 
 </header>
@@ -229,11 +230,21 @@ front.innerHTML=`
 let back=document.createElement("div")
 back.className="card-face card-back"
 
-back.innerHTML=`
-<h3>${asset}</h3>
-<div class="price" id="price${i}">₹0</div>
-<div class="change" id="change${i}">Loading...</div>
-`
+/* Use textContent to prevent DOM XSS vulnerabilities when inserting dynamic content */
+let h3=document.createElement("h3")
+h3.textContent=asset
+let priceDiv=document.createElement("div")
+priceDiv.className="price"
+priceDiv.id=`price${i}`
+priceDiv.textContent="₹0"
+let changeDiv=document.createElement("div")
+changeDiv.className="change"
+changeDiv.id=`change${i}`
+changeDiv.textContent="Loading..."
+
+back.appendChild(h3)
+back.appendChild(priceDiv)
+back.appendChild(changeDiv)
 
 card.appendChild(front)
 card.appendChild(back)
@@ -259,19 +270,19 @@ let move=(Math.random()-0.5)*20
 
 prices[i]+=move
 
-document.getElementById("price"+i).innerText="₹"+prices[i].toFixed(2)
+document.getElementById("price"+i).textContent="₹"+prices[i].toFixed(2)
 
 let change=document.getElementById("change"+i)
 
 if(move>0){
 
-change.innerHTML="▲ Profit "+move.toFixed(2)
+change.textContent="▲ Profit "+move.toFixed(2)
 change.style.color="lime"
 totalProfit+=move
 
 }else{
 
-change.innerHTML="▼ Loss "+move.toFixed(2)
+change.textContent="▼ Loss "+move.toFixed(2)
 change.style.color="red"
 totalLoss+=Math.abs(move)
 
@@ -279,8 +290,8 @@ totalLoss+=Math.abs(move)
 
 })
 
-document.getElementById("totalProfit").innerText=totalProfit.toFixed(2)
-document.getElementById("totalLoss").innerText=totalLoss.toFixed(2)
+document.getElementById("totalProfit").textContent=totalProfit.toFixed(2)
+document.getElementById("totalLoss").textContent=totalLoss.toFixed(2)
 
 }
 
