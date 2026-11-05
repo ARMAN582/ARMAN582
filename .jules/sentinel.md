@@ -1,0 +1,5 @@
+## 2026-04-06 - Securing Standalone Single-File Web Apps in Markdown/HTML
+
+**Vulnerability:** Standalone single-page web applications hosted directly inside HTML documents or README files lack backend servers to set HTTP response headers (such as Content-Security-Policy, X-Content-Type-Options, or Referrer-Policy) and often feature outbound links susceptible to reverse tabnabbing (`window.opener` hijacking).
+**Learning:** Browser security features such as Content Security Policy and referrer policies can still be effectively enforced using `<meta http-equiv="...">` tags directly in `<head>`. For embedded apps relying on inline scripts/styles and local assets, a strict `meta` CSP (`default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:;`) restricts untrusted network fetching while permitting local functionality.
+**Prevention:** In serverless or single-file HTML distributions, always declare defensive `<meta>` security headers in `<head>` and enforce `rel="noopener noreferrer"` on all external hyperlinks.
